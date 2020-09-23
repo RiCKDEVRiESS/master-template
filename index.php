@@ -6,8 +6,6 @@
 
 			<h1><?php _e( 'Latest Posts', 'html5blank' ); ?></h1>
 
-			TEST
-
 			<?php get_template_part('loop'); ?>
 
 			<?php get_template_part('pagination'); ?>
