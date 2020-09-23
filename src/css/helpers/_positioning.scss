@@ -1,0 +1,283 @@
+$spacer:                     1rem;
+$spacer-x:                   $spacer;
+$spacer-y:                   $spacer;
+$spacers: (
+  0: (
+    x:   0,
+    y:   0
+  ),
+  5: (
+    x:   ($spacer-x * .5),
+    y:   ($spacer-y * .5)
+  ),
+  10: (
+    x:   $spacer-x,
+    y:   $spacer-y
+  ),
+  15: (
+    x:   ($spacer-x * 1.5),
+    y:   ($spacer-y * 1.5)
+  ),
+  20: (
+    x:   ($spacer-x * 2),
+    y:   ($spacer-y * 2)
+  ),
+  30: (
+    x:   ($spacer-x * 3),
+    y:   ($spacer-y * 3)
+  ),
+  40: (
+    x:   ($spacer-x * 4),
+    y:   ($spacer-y * 4)
+  ),
+  50: (
+    x:   ($spacer-x * 5),
+    y:   ($spacer-y * 5)
+  ),
+  60: (
+    x:   ($spacer-x * 6),
+    y:   ($spacer-y * 6)
+  ),
+  70: (
+    x:   ($spacer-x * 7),
+    y:   ($spacer-y * 7)
+  ),
+  80: (
+    x:   ($spacer-x * 8),
+    y:   ($spacer-y * 8)
+  ),
+  90: (
+    x:   ($spacer-x * 9),
+    y:   ($spacer-y * 9)
+  ),
+  100: (
+    x:   ($spacer-x * 10),
+    y:   ($spacer-y * 10)
+  ),
+  200: (
+    x:   ($spacer-x * 20),
+    y:   ($spacer-y * 20)
+  ),
+);
+
+@mixin spacing() {
+    @each $prop, $abbrev in (margin: m, padding: p) {
+      @each $size, $lengths in $spacers {
+        $length-x:   map-get($lengths, x);
+        $length-y:   map-get($lengths, y);
+
+        .#{$abbrev}-#{$size}  { #{$prop}: $length-y $length-x !important; } // a = All sides
+        .#{$abbrev}t-#{$size} { #{$prop}-top:       $length-y !important; }
+        .#{$abbrev}r-#{$size} { #{$prop}-right:     $length-x !important; }
+        .#{$abbrev}b-#{$size} { #{$prop}-bottom:    $length-y !important; }
+        .#{$abbrev}l-#{$size} { #{$prop}-left:      $length-x !important; }
+        .#{$abbrev}x-#{$size} { #{$prop}-left:      $length-x !important; #{$prop}-right:   $length-x !important;}
+        .#{$abbrev}y-#{$size} { #{$prop}-top:       $length-y !important; #{$prop}-bottom:  $length-y !important;}
+      }
+    }
+}
+
+@include spacing;
+
+// Responsive spacing
+
+$res-spacers: (
+  0: (
+    x:   0,
+    y:   0
+  ),
+  5: (
+    x:   ($spacer-x * .5),
+    y:   ($spacer-y * .5)
+  ),
+  10: (
+    x:   ($spacer-x * 1),
+    y:   ($spacer-y * 1)
+  ),
+  20: (
+    x:   ($spacer-x * 2),
+    y:   ($spacer-y * 2)
+  ),
+  40: (
+    x:   ($spacer-x * 4),
+    y:   ($spacer-y * 4)
+  ),
+  80: (
+    x:   ($spacer-x * 8),
+    y:   ($spacer-y * 8)
+  )
+);
+
+$breakpoints-spacing: (
+    'xs',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+);
+
+@mixin res-spacing() {
+    @each $prop, $abbrev in (margin: m, padding: p) {
+        @each $bp in $breakpoints-spacing {
+            @each $size, $lengths in $res-spacers {
+                $length-x:   map-get($lengths, x);
+                $length-y:   map-get($lengths, y);
+
+                @include breakpoint("bp-#{$bp}") {
+                    .#{$abbrev}-#{$bp}-#{$size}  { #{$prop}: $length-y $length-x !important; } // a = All sides
+                    .#{$abbrev}t-#{$bp}-#{$size} { #{$prop}-top:       $length-y !important; }
+                    .#{$abbrev}r-#{$bp}-#{$size} { #{$prop}-right:     $length-x !important; }
+                    .#{$abbrev}b-#{$bp}-#{$size} { #{$prop}-bottom:    $length-y !important; }
+                    .#{$abbrev}l-#{$bp}-#{$size} { #{$prop}-left:      $length-x !important; }
+                    .#{$abbrev}x-#{$bp}-#{$size} { #{$prop}-left:      $length-x !important; #{$prop}-right:   $length-x !important;}
+                    .#{$abbrev}y-#{$bp}-#{$size} { #{$prop}-top:       $length-y !important; #{$prop}-bottom:  $length-y !important;}
+                }
+            }
+        }
+    }
+}
+
+@include res-spacing;
+
+// Positioning text
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+// Flex
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.flex-start {
+    justify-content: start;
+}
+
+.flex-end {
+    justify-content: flex-end;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-self-end {
+    align-self: flex-end;
+}
+
+.align-self-start {
+  align-self: flex-start;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+// Images
+.background-position-center {
+    background-position: center;
+}
+
+.background-size-cover {
+    background-size: cover;
+}
+
+.background-size-contain {
+  background-size: contain;
+}
+
+// Widths
+.w-100 {
+    width: 100%;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+// Height
+.h-100 {
+    height: 100%;
+}
+
+.vh-70 {
+    height: 70vh;
+}
+
+.height-lg {
+    height: 70rem;
+}
+
+.height-md {
+    height: 58rem;
+}
+
+.height-sm {
+    height: 45rem;
+}
+
+// Rotate 
+.rotate-30 {
+    transform: rotate(30deg);
+}
+
+.rotate-60 {
+    transform: rotate(60deg);
+}
+
+.rotate-70 {
+    transform: rotate(70deg);
+}
+
+.rotate-190 {
+    transform: rotate(190deg);
+}
+
+.rotate-80 {
+    transform: rotate(280deg);
+}
+
+// Positions
+.position-absolute {
+    position: absolute;
+}
+
+.right {
+    right: 0;
+}

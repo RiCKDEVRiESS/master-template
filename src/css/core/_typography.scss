@@ -1,0 +1,76 @@
+%text {
+    margin: 0;
+    font-style: normal;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+    text-transform: uppercase;
+}
+
+h1, .h1 {
+    @extend %text;
+    font-weight: 900;
+    font-size: 10rem;
+}
+
+h2, .h2 {
+    @extend %text;
+    font-weight: 900;
+    font-size: 7rem;
+}
+
+h3, .h3 {
+    @extend %text;
+    font-weight: 900;
+    font-size: 4.2rem;
+}
+
+h4, .h4 {
+    @extend %text;
+    font-weight: 900;
+    font-size: 3rem;
+}
+
+h5, .h5 {
+    @extend %text;
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+strong, b, .bold-text {
+    @extend %text;
+    font-weight: 700;
+}
+
+p {
+    @extend %text;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: $global-transition;
+
+    &:hover {
+        color: $black;
+    }
+}
+
+// Text Colors
+
+.text-white {
+    color: $white;
+}
+
+.text-black {
+    color: $black;
+}
+
+.text-gray {
+    color: $gray;
+}
+
+.text-highlight {
+    color: $highlight;
+}
